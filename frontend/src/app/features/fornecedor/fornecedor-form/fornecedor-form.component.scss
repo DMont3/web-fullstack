@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  mat-radio-group {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 20px;
+  }
+  
+  
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  
+    button mat-icon {
+      margin-right: 5px;
+      animation: spin 1s linear infinite;
+    }
+  }
+  
+  .spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 150px;
+  }
+  
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }

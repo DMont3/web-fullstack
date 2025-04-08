@@ -1,0 +1,86 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ isEditMode ? 'Editar Fornecedor' : 'Novo Fornecedor' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="fornecedorForm" (ngSubmit)="onSubmit()" *ngIf="fornecedorForm">
+  
+        <mat-radio-group formControlName="tipoPessoa" aria-label="Tipo de Pessoa" class="form-field">
+          <mat-radio-button value="FISICA">Pessoa Física</mat-radio-button>
+          <mat-radio-button value="JURIDICA">Pessoa Jurídica</mat-radio-button>
+        </mat-radio-group>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ isPessoaFisica ? 'CPF' : 'CNPJ' }}</mat-label>
+          <input matInput formControlName="identificadorFiscal" required
+                 [placeholder]="isPessoaFisica ? '12345678900' : '12345678000199'"
+                 [maxlength]="isPessoaFisica ? 11 : 14">
+          <mat-error *ngIf="fornecedorForm.get('identificadorFiscal')?.hasError('required')">Obrigatório</mat-error>
+          <mat-error *ngIf="fornecedorForm.get('identificadorFiscal')?.hasError('pattern')">
+            Formato inválido ({{ isPessoaFisica ? '11' : '14' }} dígitos)
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" required>
+          <mat-error *ngIf="fornecedorForm.get('nome')?.hasError('required')">Obrigatório</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required type="email">
+          <mat-error *ngIf="fornecedorForm.get('email')?.hasError('required')">Obrigatório</mat-error>
+          <mat-error *ngIf="fornecedorForm.get('email')?.hasError('email')">Email inválido</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" required placeholder="88000111" maxlength="8">
+          <mat-icon matSuffix *ngIf="isCepLoading">sync</mat-icon>
+          <mat-error *ngIf="fornecedorForm.get('cep')?.hasError('required')">Obrigatório</mat-error>
+          <mat-error *ngIf="fornecedorForm.get('cep')?.hasError('pattern')">8 dígitos</mat-error>
+        </mat-form-field>
+  
+        <ng-container *ngIf="isPessoaFisica">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>RG</mat-label>
+            <input matInput formControlName="rg">
+            <mat-error *ngIf="fornecedorForm.get('rg')?.hasError('required')">RG é obrigatório para Pessoa Física</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dataNascimento" readonly>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="fornecedorForm.get('dataNascimento')?.hasError('required')">Data de Nascimento é obrigatória</mat-error>
+            <mat-error *ngIf="fornecedorForm.get('dataNascimento')?.hasError('futureDate')">Data não pode ser futura</mat-error>
+          </mat-form-field>
+        </ng-container>
+  
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Empresas Associadas</mat-label>
+            <mat-select formControlName="empresaIds" multiple>
+              <mat-option *ngFor="let e of allEmpresas" [value]="e.id">
+                  {{ e.nomeFantasia }} ({{ e.cnpj }})
+              </mat-option>
+            </mat-select>
+            <mat-hint *ngIf="!allEmpresas.length">Carregando/Nenhuma empresa cadastrada.</mat-hint>
+         </mat-form-field>
+  
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="isLoading || isCepLoading || fornecedorForm.invalid">
+            <mat-icon *ngIf="isLoading">sync</mat-icon>
+            {{ isEditMode ? 'Atualizar' : 'Salvar' }}
+          </button>
+          <button mat-stroked-button type="button" (click)="onCancel()" [disabled]="isLoading">Cancelar</button>
+        </div>
+  
+      </form>
+      <div *ngIf="isLoading && !fornecedorForm" class="spinner-container">
+         <mat-progress-spinner mode="indeterminate" [diameter]="50"></mat-progress-spinner>
+       </div>
+    </mat-card-content>
+  </mat-card>

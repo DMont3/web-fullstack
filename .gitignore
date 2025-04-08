@@ -1,0 +1,45 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.javadoc
+*.project
+*.classpath
+*.settings/
+target/
+out/
+bin/
+
+# Maven
+.mvn/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# General
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.idea/
+*.vscode/
+*.env
+*.tmp
+*.bak
+*.orig
+*.rej
+*.log

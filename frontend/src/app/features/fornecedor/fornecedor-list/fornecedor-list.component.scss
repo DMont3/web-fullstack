@@ -1,0 +1,46 @@
+.filter-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  
+    mat-form-field {
+      flex: 1 1 200px;
+    }
+}
+  
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100px;
+}
+  
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: grey;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+mat-card-header {
+    margin-bottom: 20px;
+    
+    button {
+        margin-left: auto;
+    }
+}
+
+mat-card-content {
+    padding-top: 10px;
+}

@@ -1,0 +1,21 @@
+.form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+  
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  
+    button mat-icon {
+        margin-right: 5px;
+        animation: spin 1s linear infinite;
+    }
+}
+  
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

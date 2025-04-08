@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card-header {
+    padding-bottom: 16px !important;
+}
+
+mat-card-content {
+    padding-top: 16px !important;
+}
+
+.table-container {
+    margin-top: 20px;
+}
