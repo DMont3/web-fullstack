@@ -1,4 +1,4 @@
-# Desafio Fullstack
+# Web Fullstack - Java/Angular
 
 Este projeto é uma aplicação full-stack construída com as seguintes tecnologias:
 
